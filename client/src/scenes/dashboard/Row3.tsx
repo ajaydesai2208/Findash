@@ -19,6 +19,10 @@ const Row3 = () => {
   const { data: productData } = useGetProductsQuery();
   const { data: transactionData } = useGetTransactionsQuery();
 
+  // ADD THESE TWO LINES:
+  console.log("productData from query:", productData);
+  console.log("transactionData from query:", transactionData);
+
   const pieChartData = useMemo(() => {
     if (kpiData) {
       const totalExpenses = kpiData[0].totalExpenses;
@@ -118,6 +122,7 @@ const Row3 = () => {
             hideFooter={true}
             rows={productData || []}
             columns={productColumns}
+            getRowId={(row) => row._id} // ADD THIS LINE
           />
         </Box>
       </DashboardBox>
@@ -152,6 +157,7 @@ const Row3 = () => {
             hideFooter={true}
             rows={transactionData || []}
             columns={transactionColumns}
+            getRowId={(row) => row._id} // ADD THIS LINE
           />
         </Box>
       </DashboardBox>
